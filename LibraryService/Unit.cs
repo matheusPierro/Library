@@ -21,11 +21,13 @@
         }
     }
 
-    public class Paulista :  Rental
+    public class Paulista : Rental
     {
         internal override string bookReservation()
         {
-            return "";
+            // there will be an extra 15 days in the rental limit
+            limitDate = limitDate.AddDays(15); // 45 days
+            return $"Rental made for Paulista with deadline for return in {limitDate.ToShortDateString()}.";
         }
     }
 
@@ -34,7 +36,11 @@
     {
         internal override string bookReservation()
         {
-            return "";
+            if (book.category.name == "Técnico")
+            {
+                rentalPrice *= 0.9m; // 10% discount
+            }
+            return $"Rental made for Vila Olimpia with price {rentalPrice}.";
         }
     }
 
@@ -43,7 +49,8 @@
     {
         internal override string bookReservation()
         {
-            return "";
+            rentalPrice *= 0.85m; // 15% student discount
+            return $"Rental made for Aclimação with special student price: {rentalPrice}.";
         }
     }
 }

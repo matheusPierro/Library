@@ -13,7 +13,7 @@ namespace LibraryService.Models
         private string name { get; set; }
         private string description { get; set; }
         private Autor autor { get; set; }
-        private Category categoria { get; set; }
+        internal Category category { get; set; }
         private bool available { get; set; }
 
         public Book(int id) {

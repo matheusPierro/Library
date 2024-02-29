@@ -10,46 +10,42 @@ namespace LibraryService.Models
     {
         private int id { get; set; }
         private DateTime initialRentalDate { get; set; }
-        private DateTime limitDate { get; set; }
+        internal DateTime limitDate { get; set; }
         private DateTime returnDate { get; set; }
-        private Book book { get; set; }
-        private decimal rentalPrice { get; set; }
-        private int fee { get; set; }
+        internal Book book { get; set; }
+        internal decimal rentalPrice { get; set; }
 
         public Rental()
         { }
 
-        public Rental(int id, DateTime initialRentalDate, DateTime limitDate, DateTime returnDate, Book book, decimal rentalPrice, int fee)
+        public Rental(int id, DateTime initialRentalDate, DateTime limitDate, DateTime returnDate, Book book, decimal rentalPrice)
         {
-            id = id;
-            initialRentalDate = initialRentalDate;
-            limitDate = limitDate;
-            returnDate = returnDate;
-            book = book;
-            rentalPrice = rentalPrice;
-            fee = fee;
+            this.id = id;
+            this.initialRentalDate = initialRentalDate;
+            this.limitDate = limitDate;
+            this.returnDate = returnDate;
+            this.book = book;
+            this.rentalPrice = rentalPrice;
         }
 
         internal virtual string bookReservation()
         {
-            return "This method will be overrided";
+            return "This method will be overridden.";
         }
 
         private DateTime defineLimitDate(DateTime initialRentalDate)
         {
-
-            return new DateTime(limitDate.Year, limitDate.Month, limitDate.Day, limitDate.Hour, limitDate.Minute, limitDate.Second);
-
+            return initialRentalDate.AddDays(30);
         }
 
-        protected decimal calcFee(decimal rentalPrice, int fee)
+        protected decimal calcFee(decimal rentalPrice, int daysLate)
         {
-            return fee;
+            return daysLate > 0 ? rentalPrice * 0.05m * daysLate : 0; // Exemplo: 5% do preço de aluguel por dia de atraso
         }
 
-        public decimal applyFee()
+        public decimal applyFee(int daysLate)
         {
-            return calcFee(0, fee);
+            return calcFee(rentalPrice, daysLate);
         }
 
     }
