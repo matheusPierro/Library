@@ -11,5 +11,5 @@ var book = new Book();
 var category = new Category();
 var rental = new Rental();
 
-Console.WriteLine("Starting Program...");
+Console.WriteLine("");
 
