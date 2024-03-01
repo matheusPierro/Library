@@ -22,19 +22,32 @@
 
     public class Paulista : Rental
     {
-
-        internal override string bookReservation()
+        public Paulista()
         {
+        }
+
+        public Paulista(int id, DateTime initialRentalDate, DateTime returnDate, Book book, decimal rentalAmount)
+    : base(id, initialRentalDate, returnDate, book, rentalAmount)
+        {
+        }
+
+        public override string bookReservation()
+        { 
             // there will be an extra 15 days in the rental limit
             limitDate = limitDate.AddDays(15); // 45 days
-            return $"Rental made for Paulista with deadline for return in {limitDate.ToShortDateString()}.";
+            return $"Rental made for Paulista with deadline for return in {limitDate}.";
+        }
+
+        public String devolution()
+        {
+           return returnDate > limitDate ? $"Return after deadline. Interest amount: {applyFee(rentalAmount, (returnDate - limitDate).Days)}" : "Return within the deadline";
         }
 
     }
     public class VilaOlimpia : Rental
     {
 
-        internal override string bookReservation()
+        public override string bookReservation()
         {
             if (book.category.name == "Técnico")
             {
@@ -47,7 +60,7 @@
     public class Aclimacao : Rental
     {
 
-        internal override string bookReservation()
+        public override string bookReservation()
         {
             rentalAmount *= 0.85m; // 15% student discount
             return $"Rental made for Aclimação with special student price: {rentalAmount}.";

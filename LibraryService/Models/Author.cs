@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace LibraryService.Models
         
         public Author() { }
 
-        public Author(int id, string name,List<Book> books, string biography) 
+        public Author(int id, string name, List<Book> books, string biography)
         {
             this.id = id;
             this.name = name;
@@ -22,6 +23,12 @@ namespace LibraryService.Models
             this.biography = biography;
         }
 
-
+        public Author(int personId, string name, DateTime birth, string cpf, string email, string phone, int authorId, List<Book> books, string biography)
+        : base(personId, name, birth, cpf, email, phone)
+        {
+            this.id = authorId;
+            this.books = books;
+            this.biography = biography;
+        }
     }
 }

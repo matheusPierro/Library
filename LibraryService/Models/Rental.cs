@@ -17,17 +17,17 @@ namespace LibraryService.Models
 
         public Rental() { }
 
-        public Rental(int id, DateTime initialRentalDate, DateTime limitDate, DateTime returnDate, Book book, decimal rentalAmount)
+        public Rental(int id, DateTime initialRentalDate, DateTime returnDate, Book book, decimal rentalAmount)
         {
             this.id = id;
             this.initialRentalDate = initialRentalDate;
-            this.limitDate = limitDate;
+            this.limitDate = defineLimitDate(initialRentalDate);
             this.returnDate = returnDate;
             this.book = book;
             this.rentalAmount = rentalAmount;
         }
 
-        internal virtual string bookReservation()
+        public virtual string bookReservation()
         {
             return "This method will be overwritten.";
         }
@@ -39,10 +39,10 @@ namespace LibraryService.Models
 
         protected decimal calcFee(decimal rentalAmount, int daysLate)
         {
-            return daysLate > 0 ? rentalAmount * 0.05m * daysLate : 0; // Example: 5% of the rental price per day of delay
+            return daysLate > 0 ? rentalAmount * 0.05m * daysLate : 0; // 5% of the rental price per day of delay
         }
 
-        public decimal applyFee(int daysLate)
+        internal decimal applyFee(decimal rentalAmount, int daysLate)
         {
             return calcFee(rentalAmount, daysLate);
         }

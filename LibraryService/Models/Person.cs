@@ -14,11 +14,10 @@ namespace LibraryService.Models
         public string cpf { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
-        public Address address { get; set; }
 
         public Person() { }
 
-        public Person(int id, string name, DateTime birth, string cpf, string email, string phone, Address address)
+        public Person(int id, string name, DateTime birth, string cpf, string email, string phone)
         {
             this.id = id;
             this.name = name;
@@ -26,7 +25,6 @@ namespace LibraryService.Models
             this.cpf = cpf;
             this.email = email;
             this.phone = phone;
-            this.address = address;
         }
     }
 }
