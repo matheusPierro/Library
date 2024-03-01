@@ -8,17 +8,18 @@ namespace LibraryService.Models
 {
     public class Category
     {
-        private int id { get; set; }
-        internal string name { get; set; }
-        private string description { get; set; }
+
+        public int id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
 
         public Category() { }
 
         public Category(int id, string name, string description)
         {
-            id = id;
-            name = name;
-            description = description;
+            this.id = id;
+            this.name = name;
+            this.description = description;
         }
     }
 }

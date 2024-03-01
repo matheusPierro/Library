@@ -8,16 +8,17 @@ namespace LibraryService.Models
 {
     public class Person
     {
-        private int id { get; set; }
-        private string name { get; set; }
-        private DateTime birth { get; set; }
-        private string cpf { get; set; }
-        private string email { get; set; }
-        private string phone { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public DateTime birth { get; set; }
+        public string cpf { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public Address address { get; set; }
 
         public Person() { }
 
-        public Person(int id, string name, DateTime birth, string cpf, string email, string phone)
+        public Person(int id, string name, DateTime birth, string cpf, string email, string phone, Address address)
         {
             this.id = id;
             this.name = name;
@@ -25,6 +26,7 @@ namespace LibraryService.Models
             this.cpf = cpf;
             this.email = email;
             this.phone = phone;
+            this.address = address;
         }
     }
 }

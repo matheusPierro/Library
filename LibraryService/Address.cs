@@ -8,23 +8,25 @@ namespace LibraryService.Models
 {
     public class Address
     {
-        private int Id { get; set; }
-        private string neighborhood { get; set; }
-        private string city { get; set; }
-        private string state { get; set; }
-        private string zipcode { get; set; }
-        private string country { get; set; }
-        private string complement { get; set; }
+
+        public int id { get; set; }
+        public string neighborhood { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
+        public string zipCode { get; set; }
+        public string complement { get; set; }
 
         public Address() { }
 
-        public Address(string neighborhood, string city, string state, string zipcode, string country, string complement)
+        public Address(int id, string neighborhood, string city, string state, string country, string zipCode, string complement)
         {
+            this.id = id;
             this.neighborhood = neighborhood;
             this.city = city;
             this.state = state;
-            this.zipcode = zipcode;
             this.country = country;
+            this.zipCode = zipCode;
             this.complement = complement;
         }
     }
